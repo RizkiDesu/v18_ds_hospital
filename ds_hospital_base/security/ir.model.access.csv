@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_ds_patient,access_user_ds_patient,model_ds_patient,group_hospital_db_access_user,1,0,0,0
+
+
+
+access_spv_ds_patient,access_spv_ds_patient,model_ds_patient,group_hospital_db_access_spv,1,1,1,0
+
+
+
+access_admin_ds_patient,access_admin_ds_patient,model_ds_patient,group_hospital_db_access_manager,1,1,1,1
