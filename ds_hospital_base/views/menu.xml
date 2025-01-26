@@ -6,6 +6,8 @@
         <menuitem id="ds_hospital_base_menu_root" name="Hospital" sequence="5"/>
         <menuitem id="ds_hospital_base_menu_categ" name="Patient" parent="ds_hospital_base_menu_root" sequence="0"/>
         
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="ds_area_menu_categ" name="Area" parent="ds_hospital_base_menu_root" sequence="0"/>
     
     </data>
     
