@@ -20,8 +20,11 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'security/groups.xml',
+        'security/res_groups.xml',
+        
+        'security/ir.model.access.csv',
+
+        
         'views/menu.xml',
         'views/patient.xml',
         # 'views/doctor.xml',
