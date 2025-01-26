@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <menuitem id="ds_hospital_base_menu_root" name="Hospital" sequence="5"/>
+        <menuitem id="ds_hospital_base_menu_categ" name="Patient" parent="ds_hospital_base_menu_root" sequence="0"/>
+        
+    
+    </data>
+    
+
+</odoo>
