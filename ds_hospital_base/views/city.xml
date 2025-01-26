@@ -2,7 +2,21 @@
 <odoo>
 
     <data>
-    
+    <!-- ds.city tree view -->
+    <record id="ds_city_view_tree" model="ir.ui.view">
+        <field name="name">ds.city.view.tree</field>
+        <field name="model">ds.city</field>
+        <field name="arch" type="xml">
+            <list>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="description"/>
+                <field name="mobile_number"/>
+                <field name="insurance_number"/>
+                <field name="insurance_type"/>
+            </list>
+        </field>
+    </record>
        <!-- ds.city action window -->
        <record id="ds_city_action" model="ir.actions.act_window">
         <field name="name">ds.city.action</field>

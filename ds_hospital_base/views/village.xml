@@ -2,13 +2,13 @@
 <odoo>
 
     <data>
-    <!-- ds.province tree view otree -->
-    <record id="ds_province_view_tree" model="ir.ui.view">
-        <field name="name">ds.province.view.tree</field>
-        <field name="model">ds.province</field>
+    <!-- ds.village tree view -->
+    <record id="ds_village_view_tree" model="ir.ui.view">
+        <field name="name">ds.village.view.tree</field>
+        <field name="model">ds.village</field>
         <field name="arch" type="xml">
             <list>
-                <!-- Add your fields here ofield -->
+                <!-- Add your fields here -->
                 <field name="name"/>
                 <field name="description"/>
                 <field name="mobile_number"/>
@@ -17,11 +17,11 @@
             </list>
         </field>
     </record>
-        <!-- ds.province action window -->
-        <record id="ds_province_action" model="ir.actions.act_window">
-            <field name="name">ds.province.action</field>
+        <!-- ds.village action window -->
+        <record id="ds_village_action" model="ir.actions.act_window">
+            <field name="name">ds.village.action</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">ds.province</field>
+            <field name="res_model">ds.village</field>
             <field name="view_mode">list,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
@@ -33,7 +33,7 @@
             </field>
         </record>
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="ds_province_menu_action" name="province" parent="ds_area_menu_categ" action="ds_province_action" sequence="0"/>
+    <menuitem id="village_menu_action" name="village" parent="ds_area_menu_categ" action="ds_village_action" sequence="0"/>
     </data>
     
 
