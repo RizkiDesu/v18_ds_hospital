@@ -27,6 +27,10 @@
         
         'views/menu.xml',
         'views/patient.xml',
+        'views/province.xml',
+        'views/city.xml',
+        'views/district.xml',
+        'views/sub_district.xml',
         # 'views/doctor.xml',
         # 'views/categ.xml',
 
