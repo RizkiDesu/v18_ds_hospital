@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
 class ResPartner(models.Model):
-    _inherit    = 'res.partner'
+    _inherit                        = 'res.partner'
     SELECTION_TYPE                  = [('doctor', 'Doctor'), ('nurse', 'Nurse'),('midwife', 'Midwife')]
     hospital_partner_type           = fields.Selection(selection_add=SELECTION_TYPE)
     is_health_workers               = fields.Boolean(string='Health Workers')

@@ -5,3 +5,6 @@ from . import city
 from . import district
 from . import sub_district
 from . import inherit_hr_employee
+from . import hospital_service
+from . import inherit_res_company
+from . import inherit_product_template

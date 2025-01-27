@@ -18,6 +18,7 @@
         'base',
         'contacts',
         'hr',
+        'stock',
     ],
 
     # always loaded
@@ -33,6 +34,10 @@
         'views/inherit_res_parner.xml',
         'views/inherit_hr_employee.xml',
 
+        'views/hospital_service.xml',
+        'views/inherit_res_company.xml',
+        'views/inherit_product_template.xml',
+
         # Areas
         'views/province.xml',
         'views/city.xml',
@@ -40,9 +45,9 @@
         'views/sub_district.xml',
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/ds_patiens.xml',
-    ],
+    # 'demo': [
+    #     'demo/ds_patiens.xml',
+    # ],
 }
 
 
