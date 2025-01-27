@@ -10,7 +10,10 @@ class ResPartner(models.Model):
     insurance_type                  = fields.Selection(string='Insurance Type', selection=INSURANCE_TYPE, default='independent', required=True)
     
     PARTNER_TYPE                    = [('employee', 'Employee'), ('patient', 'Patient'),('other', 'Other')]
-    hospital_partner_type           = fields.Selection(string='Type', selection=PARTNER_TYPE)
+    hospital_partner_type           = fields.Selection(string='Hospital Type', selection=PARTNER_TYPE)
     
     mr_number                       = fields.Char(string='Medical Record Number')
-    
+
+    birth_date                      = fields.Date(string='Birth Date')
+    gender                          = fields.Selection(string='Gender', selection=[('male', 'Male'), ('female', 'Female')])
+
