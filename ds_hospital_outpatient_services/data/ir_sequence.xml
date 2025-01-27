@@ -3,11 +3,11 @@
 
     <data noupdate="1">
     
-        <record id="sequence_medical_record" model="ir.sequence">
-            <field name="name">medical Record</field>
-            <field name="code">ds.medical.record</field>
-            <field name="prefix">MR</field>
-            <field name="padding">4</field>
+        <record id="sequence_oupetien" model="ir.sequence">
+            <field name="name">Oupatien</field>
+            <field name="code">ds.oupatient</field>
+            <field name="prefix">OU%(y)s%(month)s.</field>
+            <field name="padding">5</field>
             <field name="number_next_actual">1</field>
             <field name="number_increment">1</field>
             <field name="implementation">standard</field>

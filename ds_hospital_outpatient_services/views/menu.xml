@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <menuitem id="ds_oupatient_menu_categ" name="Oupatient" parent="ds_hospital_base.ds_service_menu_root" sequence="0"/>
+        <menuitem id="ds_dashboard_menu_categ" name="Dashboard" parent="ds_oupatient_menu_categ" sequence="0"/>
+        
+    
+    </data>
+    
+
+</odoo>

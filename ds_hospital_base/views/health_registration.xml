@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <!-- ds.health.registration tree view -->
+        <record id="ds_health_registration_view_tree" model="ir.ui.view">
+            <field name="name">ds.health.registration.view.tree</field>
+            <field name="model">ds.health.registration</field>
+            <field name="arch" type="xml">
+                <list>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="patient_id"/>
+                    <field name="mr_number"/>
+                    <field name="health_workers_id"/>
+                    <field name="service_id"/>
+                    <field name="diagnosis_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ds.health.registration form view -->
+        <record id="ds_health_registration_view_form" model="ir.ui.view">
+            <field name="name">ds.health.registration.view.form</field>
+            <field name="model">ds.health.registration</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3><label for="name"/></h3>
+                            <h1><field name="name" /></h1>
+                        </div>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="mr_number"/>
+                            <field name="health_workers_ids" widget="many2many_tags"/>
+                            <field name="service_id"/>
+                            <field name="diagnosis_id"/>
+                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+    
+    </data>
+    
+
+</odoo>

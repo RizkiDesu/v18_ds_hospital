@@ -1,10 +1,10 @@
 {
-    'name': "Hospital Base",
+    'name': "Hospital Outpatient Services",
     'summary': """
-        Modul Hospital Base""",
+        Modul Hospital Outpatient Services""",
 
     'description': """
-        Modul Hospital Base
+        Modul Hospital Outpatient Services
     """,
 
     'author'    : "Lolidesu",
@@ -16,10 +16,9 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base',
-        'contacts',
-        'hr',
-        'stock',
-        'account',
+        'ds_hospital_base',
+        # 'hr',
+        # 'stock',
     ],
 
     # always loaded
@@ -28,24 +27,14 @@
         'security/ir.model.access.csv',
 
         'data/ir_sequence.xml',
+        'data/data.xml',
 
         'views/menu.xml',
-        'views/patient.xml',
-
-        'views/inherit_res_parner.xml',
-        'views/inherit_hr_employee.xml',
+        'views/registration_outpatient.xml',
         'views/inherit_res_config_settings.xml',
 
-        'views/hospital_service.xml',
-        'views/inherit_res_company.xml',
-        'views/inherit_product_template.xml',
-        'views/inherit_account_move.xml',
 
-        # Areas
-        'views/province.xml',
-        'views/city.xml',
-        'views/district.xml',
-        'views/sub_district.xml',
+        
     ],
     # only loaded in demonstration mode
     # 'demo': [

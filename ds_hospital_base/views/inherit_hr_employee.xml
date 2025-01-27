@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+
+        <record id="view_hr_employee_hospital_inherit_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherited</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='work_email']" position="before">
+                    <field name="identity_card"/>
+                    <field name="birth_date"/>
+                    <field name="gender"/>
+                    <field name="specialist_ids" invisible="hospital_partner_type != 'doctor'" widget="many2many_tags"/>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page name="hospital" string="Hospital Information">
+                        <group name="hospital" string="Hospital">
+                            <field name="hospital_partner_type"/>
+                            <field name="is_health_workers"/>
+                            <field name="work_contact_id" invisible="1"/>
+                        </group>
+                    </page>
+                </xpath>
+                
+            </field>
+        </record>
+
+
+        <record id="hr_employee_action_hospital_doctor" model="ir.actions.act_window">
+            <field name="name">Doctor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('hospital_partner_type', '=', 'doctor'),('is_health_workers','=',True)]</field>
+            <field name="context">{'default_hospital_partner_type': 'doctor', 'default_is_health_workers': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add Doctor 
+                </p><p>
+                    To add a new doctor.
+                
+                </p>
+            </field>
+        </record>
+        <menuitem id="ds_hospital_doctor_menu_act" name="Doctor" parent="ds_health_workers_menu_categ" action="hr_employee_action_hospital_doctor" sequence="0"/>
+
+        <record id="hr_employee_action_hospital_midwife" model="ir.actions.act_window">
+            <field name="name">Midwife</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('hospital_partner_type', '=', 'midwife'),('is_health_workers','=',True)]</field>
+            <field name="context">{'default_hospital_partner_type': 'midwife', 'default_is_health_workers': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add Midwife 
+                </p><p>
+                    To add a new Midwife.
+                
+                </p>
+            </field>
+        </record>
+        <menuitem id="ds_hospital_midwife_menu_act" name="Midwife" parent="ds_health_workers_menu_categ" action="hr_employee_action_hospital_midwife" sequence="5"/>
+
+         <record id="hr_employee_action_hospital_nurse" model="ir.actions.act_window">
+            <field name="name">Nurse</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('hospital_partner_type', '=', 'nurse'),('is_health_workers','=',True)]</field>
+            <field name="context">{'default_hospital_partner_type': 'nurse', 'default_is_health_workers': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add Nurse 
+                </p><p>
+                    To add a new Nurse.
+                
+                </p>
+            </field>
+        </record>
+        <menuitem id="ds_hospital_nurse_menu_act" name="Nurse" parent="ds_health_workers_menu_categ" action="hr_employee_action_hospital_nurse" sequence="5"/>
+    
+    </data>
+    
+
+</odoo>

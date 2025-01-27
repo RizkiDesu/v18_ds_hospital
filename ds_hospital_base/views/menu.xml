@@ -4,11 +4,22 @@
     <data>
     
         <menuitem id="ds_hospital_base_menu_root" name="Hospital" sequence="5"/>
-        <menuitem id="ds_hospital_base_menu_categ" name="Patient" parent="ds_hospital_base_menu_root" sequence="0"/>
+
+        <menuitem id="ds_service_menu_root" name="Service" sequence="6"/>
+
+
+        <menuitem id="ds_hospital_dashboard_menu_categ" name="Dashboard" parent="ds_hospital_base_menu_root" sequence="0"/>
+
+        <menuitem id="ds_hospital_base_menu_categ" name="Patient" parent="ds_hospital_base_menu_root" sequence="5"/>
+
+        <menuitem id="ds_health_workers_menu_categ" name="Health Workers" parent="ds_hospital_base_menu_root" sequence="10"/>
+
+
+        <menuitem id="ds_configuration_menu_categ" name="Configuration" parent="ds_hospital_base_menu_root" sequence="1000"/>
+        <menuitem id="ds_area_menu_categ" name="Area" parent="ds_configuration_menu_categ" sequence="0"/>
+
+
         
-        <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="ds_area_menu_categ" name="Area" parent="ds_hospital_base_menu_root" sequence="0"/>
-    
     </data>
     
 
