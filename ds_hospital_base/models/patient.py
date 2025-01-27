@@ -21,3 +21,5 @@ class Patient(models.Model):
         return res
     
     responsible_patient = fields.Many2one('res.partner', string='Responsible Patient', domain=[('company_type', '=', 'person')])
+    
+    history_hospital_registration = fields.One2many(comodel_name='ds.health.registration', inverse_name='patient_id', string='History Hospital Registration', domain=[('state','=','done')])

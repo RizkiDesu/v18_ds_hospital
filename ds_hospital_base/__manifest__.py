@@ -19,6 +19,7 @@
         'contacts',
         'hr',
         'stock',
+        'account',
     ],
 
     # always loaded
@@ -33,10 +34,12 @@
 
         'views/inherit_res_parner.xml',
         'views/inherit_hr_employee.xml',
+        'views/inherit_res_config_settings.xml',
 
         'views/hospital_service.xml',
         'views/inherit_res_company.xml',
         'views/inherit_product_template.xml',
+        'views/inherit_account_move.xml',
 
         # Areas
         'views/province.xml',

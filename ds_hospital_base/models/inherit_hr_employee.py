@@ -22,6 +22,9 @@ class HrEmployee(models.Model):
     gender                          = fields.Selection(string='Gender', selection=[('male', 'Male'), ('female', 'Female')])
     is_health_workers               = fields.Boolean(string='Health Workers')
     
+    specialist_ids                  = fields.Many2many(comodel_name='ds.specialist', string='Specialists')
+    
+
     @api.onchange('hospital_partner_type')
     def _onchange_hospital_partner_type(self):
         self.work_contact_id.hospital_partner_type  = self.hospital_partner_type

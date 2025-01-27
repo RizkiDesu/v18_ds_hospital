@@ -14,6 +14,7 @@
                     <field name="identity_card"/>
                     <field name="birth_date"/>
                     <field name="gender"/>
+                    <field name="specialist_ids" invisible="hospital_partner_type != 'doctor'" widget="many2many_tags"/>
                 </xpath>
 
                 <xpath expr="//notebook" position="inside">

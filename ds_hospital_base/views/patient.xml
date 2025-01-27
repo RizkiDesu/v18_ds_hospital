@@ -67,6 +67,11 @@
                                 <field name="responsible_patient"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page name="history" string="History Registration">
+                                <field name="history_hospital_registration" readonly="1"/>
+                            </page>
+                        </notebook>
                     </sheet>
                     <!-- <chatter reload_on_follower="True"/> -->
                 </form>

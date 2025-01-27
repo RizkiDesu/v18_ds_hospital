@@ -11,6 +11,7 @@
                 <xpath expr="//notebook" position="inside">
                     <page name="hospital" string="Hospital Information">
                         <group name="service" string="Service">
+                            <field name="service_id"/>
                             <field name="hospital_service_id"/>
                         </group>
                         <group>
