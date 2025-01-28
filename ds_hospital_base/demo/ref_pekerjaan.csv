@@ -1,0 +1,96 @@
+﻿id;name;kode
+pekerjaan_01;Belum/Tidak Bekerja;00
+pekerjaan_02;Mengurus Rumah Tangga;01
+pekerjaan_03;Pelajar/ Mahasiswa;02
+pekerjaan_04;Pensiun;03
+pekerjaan_05;Pegawai Negeri Sipil;04
+pekerjaan_06;Tentara;05
+pekerjaan_07;Kepolisian;06
+pekerjaan_08;Perdagangan;07
+pekerjaan_09;Petani/Pekebun;08
+pekerjaan_10;Peternak;09
+pekerjaan_11;Nelayan/Perikanan;10
+pekerjaan_12;Industri;11
+pekerjaan_13;Konstruksi;12
+pekerjaan_14;Transportasi;13
+pekerjaan_15;Karyawan Swasta;14
+pekerjaan_16;Karyawan BUMN;15
+pekerjaan_17;Karyawan BUMD;16
+pekerjaan_18;Karyawan Honorer;17
+pekerjaan_19;Buruh Harian Lepas;18
+pekerjaan_20;Buruh Tani/Perkebunan;19
+pekerjaan_21;Buruh Nelayan/Perikanan;20
+pekerjaan_22;Buruh Peternakan;21
+pekerjaan_23;Pembantu Rumah Tangga;22
+pekerjaan_24;Tukang Cukur;23
+pekerjaan_25;Tukang Listrik;24
+pekerjaan_26;Tukang Batu;25
+pekerjaan_27;Tukang Kayu;26
+pekerjaan_28;Tukang Sol Sepatu;27
+pekerjaan_29;Tukang Las/Pandai Besi;28
+pekerjaan_30;Tukang Jahit;29
+pekerjaan_31;Penata Rambut;30
+pekerjaan_32;Penata Rias;31
+pekerjaan_33;Penata Busana;32
+pekerjaan_34;Mekanik;33
+pekerjaan_35;Tukang Gigi;34
+pekerjaan_36;Seniman;35
+pekerjaan_37;Tabib;36
+pekerjaan_38;Paraji;37
+pekerjaan_39;Perancang Busana;38
+pekerjaan_40;Penterjemah;39
+pekerjaan_41;Imam Masjid;40
+pekerjaan_42;Pendeta;41
+pekerjaan_43;Pastur;42
+pekerjaan_44;Wartawan;43
+pekerjaan_45;Ustadz/Mubaligh;44
+pekerjaan_46;Juru Masak;45
+pekerjaan_47;Promotor Acara;46
+pekerjaan_48;Anggota DPR;47
+pekerjaan_49;Anggota DPD;48
+pekerjaan_50;Anggota BPK;49
+pekerjaan_51;Presiden;50
+pekerjaan_52;Wakil Presiden;51
+pekerjaan_53;Anggota Mahkamah Konstitusi;52
+pekerjaan_54;Anggota Kabinet/Kementerian;53
+pekerjaan_55;Duta Besar;54
+pekerjaan_56;Gubernur;55
+pekerjaan_57;Wakil Gubernur;56
+pekerjaan_58;Bupati;57
+pekerjaan_59;Wakil Bupati;58
+pekerjaan_60;Walikota;59
+pekerjaan_61;Wakil Walikota;60
+pekerjaan_62;Anggota DPRD Provinsi;61
+pekerjaan_63;Anggota DPRD Kab/Kota;62
+pekerjaan_64;Dosen;63
+pekerjaan_65;Guru;64
+pekerjaan_66;Pilot;65
+pekerjaan_67;Pengacara;66
+pekerjaan_68;Notaris;67
+pekerjaan_69;Arsitek;68
+pekerjaan_70;Akuntan;69
+pekerjaan_71;Konsultan;70
+pekerjaan_72;Dokter;71
+pekerjaan_73;Bidan;72
+pekerjaan_74;Perawat;73
+pekerjaan_75;Apoteker;74
+pekerjaan_76;Psikiater/Psikolog;75
+pekerjaan_77;Penyiar Televisi;76
+pekerjaan_78;Penyiar Radio;77
+pekerjaan_79;Pelaut;78
+pekerjaan_80;Peneliti;79
+pekerjaan_81;Sopir;80
+pekerjaan_82;Pialang;81
+pekerjaan_83;Paranormal;82
+pekerjaan_84;Pedagang;83
+pekerjaan_85;Perangkat Desa;84
+pekerjaan_86;Kepala Desa;85
+pekerjaan_87;Biarawati;86
+pekerjaan_88;Wiraswasta;87
+pekerjaan_89;Lainnya;88
+pekerjaan_90;Musisi;89
+pekerjaan_91;Pemain Sepak Bola;90
+pekerjaan_92;Aktor;91
+pekerjaan_93;Selebriti;92
+pekerjaan_94;Entertainment;93
+pekerjaan_95;Kepala Sekolah;94

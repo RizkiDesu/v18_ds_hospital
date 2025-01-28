@@ -16,9 +16,10 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base',
+        'stock',
+        'account',
         'ds_hospital_base',
-        # 'hr',
-        # 'stock',
+        'ds_hospital_observation_services',
     ],
 
     # always loaded

@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-
+from odoo.osv import expression
 
 
 class DsSpecialist(models.Model):
@@ -18,7 +18,7 @@ class DsIcd10(models.Model):
     name            = fields.Char(string='name')
     code            = fields.Char(string='code')
     description     = fields.Text(string='Description')
-    
+
 
 class DsIcd9(models.Model):
     _name           = 'ds.icd9'

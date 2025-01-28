@@ -1,0 +1,113 @@
+Urutan Instalasi SIMRS Cendana 2024 (Odoo16)
+
+1. Install AddOn Sekaligus
+- Penjualan
+- Pembelian
+- Penagihan
+- Odoo16 Customized
+- POS
+- Karyawan
+- Odoo 16 Full Accounting Kit - Cybrosys
+- Dynamic Financial Report - Cybrosys
+- Dashboard Ninja
+
+2. Sesuaikan Account COA
+- Export COA csv, update dengan Akun_accountant_id.csv
+- Tambahkan Bank 
+
+3. Install Aplikasi SIMRS (satu persatu)
+** v16_simrs_2024_basic 
+- SIMRS Base : cdn_simrs_base
+- SIMRS Penunjang Medis : cdn_simrs_penunjang_medis 
+- SIMRS Penunjang Non Medis : cdn_simrs_penunjang_nonmedis
+- SIMRS Admission Module : cdn_simrs_admission
+
+** v16_simrs_2024_pro1
+- SIMRS Bedah Sentral : cdn_simrs_bedahsentral
+- SIMRS Modul Farmasi : cdn_simrs_farmasi
+- SIMRS Persalinan VK : cdn_simrs_persalinan
+- SIMRS Modul Rekam Medis : cdn_simrs_emr
+- SIMRS ICU : cdn_simrs_icu
+- SIMRS Laundry : cdn_simrs_laundry
+
+** v16_simrs_2024_pro2
+- SIMRS Poli Gigi : cdn_simrs_gigi
+
+4. Install Theme & Login
+- MUK Backend Theme
+- Web Responsive : web_responsive
+- Web Responsive UX : web_responsive_ux
+- Background image in login page : login_bg_img_knk
+
+
+- Upload Background : medical-17.jpg dari menu Pengaturan - User & Companies - Background Image
+- Atur Background Menu : Pengaturan - Login Background dan Backend Theme : Background Image : medical-21.jpg
+- Edit Logo
+- Edit Apps Name => Pengaturan - OdooAp - Customized Debrand
+
+5. Install AddOn :
+- Web Timer Widget
+- Web Domain Field
+
+
+6. Aktifkan Varian, UOM, Gudang
+Pengaturan - Stok Persediaan : 
+- Produk Varian 
+- Satuan UOM
+- Gudang - Lokasi Penyimpanan
+
+Pengaturan - Accounting
+- Pajak Penjualan dan Pajak Pembelian : 11%
+
+7. Buat UOM / Satuan
+- Satuan : PCS, Pcs, Bh, Lusin
+- Berat : Gr
+
+======== PENGISIAN DATA AWAL / MASTER ===========
+1. Import COA Tambahan : Persediaan, Penjualan, HPP
+2. Import Ref Propinsi, Kabupaten Kota, Kecamatan, Desa
+3. Import Ref Pekerjaan
+4. Import Master Data Asuransi
+5. Import Disease Categories / Blok ICD10 : ICD10-category.csv
+6. Import ICD10 : ICD10.csv
+7. Import ICD9 : cdn_icd9.csv
+8. Import Spesialis : cdn_spesialis.csv
+9. Import Ruang Poli : cdn_ruang_poli.csv --> setelah Import lakukan Pengaturan Kuota Antrian di masing2 Poli
+10. Import Dokter : cdn_dokter.csv
+11. Import Jadwal Layanan Poli : cdn_jadwal_poli.csv
+12. Import Lokasi Berkas Rekam Medis : cdn_lokasi_rm.csv
+13. Buat Produk Layanan - Kamar / Paviliun :
+	- Nama : Kamar Rawat Inap
+	- Kategori Produk : Jasa Non Medis
+	- Tipe Produk : Jasa
+	- Hospital Product : Kamar/Ruangan
+	- Dapat Dijual
+	- Attribute : Kelas (VVIP, VIP, Kelas I, Kelas II, Kelas III)
+14. Import Blok Kamar (Ranap) : cdn_blok_kamar.csv
+15. Import Data Kamar Ranap : cdn_kamar_ranap --> Create New Value utk yang belum ada (Kelas)
+16. Update Data Kamar Ranap, 
+	- Sesuaikan Produk Layanan dengan Varian Kelas Kamar nya (misal : Kelas III --> Produk Layanan : Kamar Rawat Inap (Kelas III)
+	- Tambah Data Tempat Tidur, sesuaikan Nama nya
+	- Tambahkan Fasilitas Kamar (opsional)
+17. Import Waktu Diet : cdn_waktu_diet.csv
+18. Import Master Data Diet : cdn_ref_diet.csv
+19. Import IGD - Kebutuhan Khusus : cdn_triase_kebutuhan.csv
+20. Import IGD - Kasus Kejadian IGD : cdn_triase_kasus.csv
+21. Import IGD - Pemeriksaan Triase : cdn_triase_periksa.csv
+22. Import IGD - Skala Penentuan Triase : cdn_triase_skala.csv
+
+==== WARNING : Hati-hati sebelum Import Data Barang dan Kategori, Pastikan Sudah dilakukan BackupDB ====
+23. Import Product Category :
+	- Lakukan Update utk Akun Valuasi Stok --> Sesuaikan dg COA Persediaan (misal : kategori ALKES HABIS PAKAI .. Akun Valuasi Stok : Persediaan ALKES HABIS PAKAI, dsb)
+24. Edit Gudang -> Gudang Utama : WH
+
+*** Data Product ***
+25. Import Tindakan Procedure (Manajemen RS) : tindakan_medis.csv
+26. Import Jasa Medis (Manajemen RS) : jasa_rad_lab.csv
+27. Import Data Obat : obat_medis_all.csv
+28. Import Pasien : cdn_pasien.csv
+
+
+CATATAN :
+- Utk user dengan pembuatan tagihan, wajib Hak Akses : Akuntansi --> Tagihan
+

@@ -3,10 +3,9 @@
 
     <data>
     
-        <menuitem id="ds_hospital_base_menu_root" name="Hospital" sequence="5"/>
+        <menuitem id="ds_hospital_base_menu_root" name="Hospital" sequence="5" web_icon="ds_hospital_base,static/description/icon.png" groups="group_hospital_access_manager"/>
 
-        <menuitem id="ds_service_menu_root" name="Service" sequence="6"/>
-
+        <menuitem id="ds_service_menu_root" name="Service" sequence="6"  web_icon="ds_hospital_base,static/description/medical-team.png" groups="group_hospital_access_user"/>
 
         <menuitem id="ds_hospital_dashboard_menu_categ" name="Dashboard" parent="ds_hospital_base_menu_root" sequence="0"/>
 

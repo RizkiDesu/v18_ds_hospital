@@ -2,8 +2,134 @@
 <odoo>
 
     <data>
-    
-        
+        <record id="ds_specialist_view_tree" model="ir.ui.view">
+            <field name="name">ds.specialist.view.tree</field>
+            <field name="model">ds.specialist</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                </list>
+            </field>
+        </record>
+        <record id="ds_icd10_view_tree" model="ir.ui.view">
+            <field name="name">ds.icd10.view.tree</field>
+            <field name="model">ds.icd10</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                </list>
+            </field>
+        </record>
+        <record id="ds_icd9_view_tree" model="ir.ui.view">
+            <field name="name">ds.icd9.view.tree</field>
+            <field name="model">ds.icd9</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                </list>
+            </field>
+        </record>
+
+
+        <record id="ds_specialist_view_form" model="ir.ui.view">
+            <field name="name">ds.specialist.view.form</field>
+            <field name="model">ds.specialist</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="ds_icd10_view_form" model="ir.ui.view">
+            <field name="name">ds.icd10.view.form</field>
+            <field name="model">ds.icd10</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="ds_icd9_view_form" model="ir.ui.view">
+            <field name="name">ds.icd9.view.form</field>
+            <field name="model">ds.icd9</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ds_specialist_action" model="ir.actions.act_window">
+            <field name="name">Specialist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ds.specialist</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+        <record id="ds_icd10_action" model="ir.actions.act_window">
+            <field name="name">ICD 10</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ds.icd10</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+        <record id="ds_icd9_action" model="ir.actions.act_window">
+            <field name="name">ICD 9</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ds.icd9</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="ds_reference_menu_categ" name="Reference" parent="ds_configuration_menu_categ" sequence="15">
+            <menuitem id="ds_specialist_menu_action" name="Specialist" action="ds_specialist_action" sequence="0"/>
+            <menuitem id="ds_icd10_menu_action" name="ICD10" action="ds_icd10_action" sequence="0"/>
+            <menuitem id="ds_icd9_menu_action" name="ICD9" action="ds_icd9_action" sequence="0"/>
+        </menuitem>
+
+
     
     </data>
     

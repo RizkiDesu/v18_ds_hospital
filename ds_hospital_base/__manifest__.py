@@ -41,6 +41,8 @@
         'views/inherit_product_template.xml',
         'views/inherit_account_move.xml',
 
+        'views/hospital_reference.xml',
+
         # Areas
         'views/province.xml',
         'views/city.xml',
