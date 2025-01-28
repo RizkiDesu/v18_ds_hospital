@@ -20,6 +20,7 @@ class DsHospitalLibrary(models.AbstractModel):
             'invoice_date'      : fields.Date.today(),
             'partner_id'        : invoice_data['partner_id'],
             'partner_ids'       : invoice_data['partner_ids'] or [],
+            'registration_id'   : invoice_data['registration_id'] or False,
             'invoice_line_ids'  : [],
         }
         for line in invoice_data['product_ids']:
@@ -30,6 +31,10 @@ class DsHospitalLibrary(models.AbstractModel):
             }
             invoice_vals['invoice_line_ids'].append((0, 0, invoice_line_vals))
         invoice_id = self.env['account.move'].sudo().create(invoice_vals)
+        invoice_id._onchange_partner_id()
+        auto_invoice = self.env['ir.config_parameter'].sudo().get_param('ds_hospital_base.auto_invoice')
+        if auto_invoice == 'True' or auto_invoice == True:
+            invoice_id.action_post()
         return invoice_id
             
         

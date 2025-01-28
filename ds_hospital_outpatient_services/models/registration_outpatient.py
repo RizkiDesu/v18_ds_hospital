@@ -7,6 +7,7 @@ from odoo.exceptions import UserError, ValidationError
 
 class DsObservationServicesOutpatient(models.Model):
     _inherit = 'ds.observation.services'
+
     REQ_TYPE = [
         ('outpatient', 'Outpatient'),
         ]
@@ -82,13 +83,15 @@ class DsRegistrationOutpatient(models.Model):
                 'product_id'    : self.product_service_id.id,
                 'quantity'      : 1,
                 'price_unit'    : self.product_service_id.list_price
+                
             })
         if not self.invoice_id:
             if self.product_service_id != False:
                 invoice_id = self.ds_create_invoice({
-                    'partner_id'    : self.patient_id.partner_id.id,
-                    'partner_ids'   : partner_ids,
-                    'product_ids'   : product_ids
+                    'partner_id'        : self.patient_id.partner_id.id,
+                    'partner_ids'       : partner_ids,
+                    'product_ids'       : product_ids,
+                    'registration_id'   : self.registration_id.id
                 })
                 self.invoice_id = invoice_id
         self.state          = 'confirm'
@@ -97,7 +100,6 @@ class DsRegistrationOutpatient(models.Model):
         if self.invoice_id:
             self.invoice_id.button_cancel()
         self.state = 'cancel'
-
 
     @api.onchange('patient_id')
     def _onchange_patient_id(self):
@@ -110,7 +112,6 @@ class DsRegistrationOutpatient(models.Model):
         action = self.env["ir.actions.actions"]._for_xml_id("ds_hospital_observation_services.ds_nursing_assessment_action")
         action['domain'] = [('registration_id', '=', self.registration_id.id), ('req_type', '=', self.req_type)]
         action['context'] = {
-
             'default_registration_id': self.registration_id.id, 
             'default_req_type' : self.req_type, 
             'default_patient_id' : self.patient_id.id,
@@ -120,6 +121,22 @@ class DsRegistrationOutpatient(models.Model):
             'default_service_id' : self.service_id.id,
             'default_service_line_id' : self.service_line_id.id,
             'default_diagnosis_id' : self.diagnosis_id.id
+        }     
+        return action
+    
+
+    def action_medical_assessment(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("ds_hospital_observation_services.ds_medical_assessment_action")
+        action['domain'] = [('registration_id', '=', self.registration_id.id), ('req_type', '=', self.req_type)]
+        action['context'] = {
+            'default_registration_id': self.registration_id.id, 
+            'default_req_type' : self.req_type, 
+            'default_patient_id' : self.patient_id.id,
+            'default_doctor_id' : self.doctor_id.id,
+            'default_nurse_id' : self.nurse_id.id,
+            'default_midwife_id' : self.midwife_id.id,
+            'default_service_id' : self.service_id.id,
+            'default_service_line_id' : self.service_line_id.id,
         }
                              
         return action

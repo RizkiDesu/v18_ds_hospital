@@ -88,8 +88,12 @@ class DsObservationService(models.Model):
     gcs_score       = fields.Integer(string='Score GCS')
 
     
-    
+    product_id      = fields.Many2one('product.product', string='Product')
 
+    chief_complaint             = fields.Text(string='Chief Complaint')
+    family_history_of_illness   = fields.Text(string='Family history of illness')
+    history_of_previous_illness = fields.Text(string='History of previous illness')
+    history_of_allergies        = fields.Text(string='History of allergies')
 
     @api.model
     def create(self, vals):

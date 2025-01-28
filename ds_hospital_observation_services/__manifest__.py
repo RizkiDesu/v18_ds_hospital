@@ -30,6 +30,7 @@
         'views/inherit_res_config_settings.xml',
         'views/observation_service.xml',
         'views/nursing_assessment.xml',
+        'views/medical_assessment.xml',
 
 
     ],

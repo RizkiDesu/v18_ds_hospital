@@ -12,13 +12,10 @@ class DsAsessment(models.Model):
     observation_id  = fields.Many2one('ds.observation.services', string='Registration', required=True, ondelete='cascade')
 
 
-    chief_complaint             = fields.Text(string='Chief Complaint')
-    family_history_of_illness   = fields.Text(string='Family history of illness')
-    history_of_previous_illness = fields.Text(string='History of previous illness')
-    history_of_allergies        = fields.Text(string='History of allergies')
+    
 
 
-    product_id                  = fields.Many2one('product.product', string='Product')
+    
 
 
 

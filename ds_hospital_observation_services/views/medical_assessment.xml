@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="ds_medical_assessment_view_tree" model="ir.ui.view">
+            <field name="name">ds.medical.assessment.view.tree</field>
+            <field name="model">ds.medical.assessment</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="date_time_create"/>
+                    <field name="registration_id"/>
+                    <field name="service_id"/>
+                    <field name="doctor_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="ds_medical_assessment_view_form" model="ir.ui.view">
+            <field name="name">ds.medical.assessment.view.form</field>
+            <field name="model">ds.medical.assessment</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button string="Confirm" invisible="state not in ('draft')" name="action_confirm" type="object" class="oe_highlight"/>
+                        <button string="Done" invisible="state not in ('confirm')" name="action_done" type="object" class="oe_highlight"/>
+                        <!-- <button string="Cancel" invisible="state not in ('confirm')" name="action_cancel" type="object" class="oe_highlight"/> -->
+                        <!-- <button string="Tes" name="tesss" type="object" class="oe_highlight"/> -->
+                        <button string="Draft" invisible="state not in ('done')" name="action_draft" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="confirm,done" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h3><label for="name"/></h3>
+                            <h1><field name="name" readonly="1"/></h1>
+                            <label for="date_time_create"/>
+                            <field name="date_time_create"/>
+                            <field name="product_id" invisible="1"/>
+                        </div>
+                        <group name="regisitration" string="Registration">
+
+                            <field name="registration_id" readonly="state not in ('draft')"/>
+                            <field name="req_type" readonly="state not in ('draft')"/>
+
+                        </group>
+
+                        <group name="patient" string="Patient Information">
+                            <field name="patient_id" readonly="state not in ('draft')"/>
+                            <field name="mr_number"/>
+                        </group>
+
+                        <group name="health_workers" string="Health Workers">
+                            <field name="service_line_id" readonly="state not in ('draft')"/>
+                            <field name="specialist_id" invisible="1"/>
+                            <field name="doctor_id" readonly="state not in ('draft')" domain="[('is_health_workers','=',True),('specialist_ids','in',specialist_id),('hospital_partner_type','=','doctor')]"/>
+                            <field name="nurse_id" readonly="state not in ('draft')" domain="[('is_health_workers','=',True),('hospital_partner_type','=','nurse')]"/>
+                            <field name="is_midwifery" invisible="1"/>
+                            <field name="midwife_id" readonly="state not in ('draft')" domain="[('is_health_workers','=',True),('hospital_partner_type','=','midwife')]" invisible="is_midwifery == False"/>
+                            <field name="health_workers_ids" widget="many2many_tags" invisible="1"/>
+                            <field name="partner_ids" widget="many2many_tags" invisible="1"/>
+                        </group>
+
+                        
+                        
+                        <notebook>
+                            <page name="base_information" string="Medical Assessment Base Information">
+                                <group name="medical_assessment" string="Medical Assessment Base Information">
+                                    <group>
+                                        <field name="weight" readonly="state not in ('draft')"/>
+                                        <field name="height" readonly="state not in ('draft')"/>
+                                        <field name="temp" readonly="state not in ('draft')"/>
+                                        <field name="hr" readonly="state not in ('draft')"/>
+                                        <field name="rr" readonly="state not in ('draft')"/>
+                                    </group>
+                                    <group>
+                                        <field name="systolic_bp" readonly="state not in ('draft')"/>
+                                        <field name="diastolic_bp" readonly="state not in ('draft')"/>
+                                        <field name="spo2" readonly="state not in ('draft')"/>
+                                        <field name="consciousness" readonly="state not in ('draft')"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="bmi" readonly="state not in ('draft')"/>
+                                        <field name="bmi_state" readonly="state not in ('draft')"/>
+                                    </group>
+                                    <group>
+                                        <field name="gcs_input" readonly="state not in ('draft')"/>
+                                        <field name="gcs_score" readonly="state not in ('draft')"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="complaint" string="Chief Complaint">
+                                <group>
+                                    <field name="diagnosis_id"/>
+                                    <field name="chief_complaint"/>
+                                    <field name="family_history_of_illness"/>
+                                    <field name="history_of_previous_illness"/>
+                                    <field name="history_of_allergies"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="ds_medical_assessment_action" model="ir.actions.act_window">
+            <field name="name">Medical Asessment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ds.medical.assessment</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>
