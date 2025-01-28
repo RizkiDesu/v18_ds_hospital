@@ -4,6 +4,15 @@ from odoo.exceptions import UserError, ValidationError
 
 # READONLY_STATES = {'draft': [('readonly', False)], 'confirm': [('readonly', True)],'process': [('readonly', True)], 'cancel': [('readonly', True)], 'done': [('readonly', True)]}
 
+
+class DsObservationServicesOutpatient(models.Model):
+    _inherit = 'ds.observation.services'
+    REQ_TYPE = [
+        ('outpatient', 'Outpatient'),
+        ]
+    req_type = fields.Selection(string='Registration Type', selection_add=REQ_TYPE)
+
+
 class DsHealthRegistrationOutpatient(models.Model):
     _inherit = 'ds.health.registration'
     REQ_TYPE = [
@@ -96,6 +105,25 @@ class DsRegistrationOutpatient(models.Model):
             self.responsible_patient = self.patient_id.responsible_patient
         else:
             self.responsible_patient = False
+    
+    def action_nursing_assessment(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("ds_hospital_observation_services.ds_nursing_assessment_action")
+        action['domain'] = [('registration_id', '=', self.registration_id.id), ('req_type', '=', self.req_type)]
+        action['context'] = {
+
+            'default_registration_id': self.registration_id.id, 
+            'default_req_type' : self.req_type, 
+            'default_patient_id' : self.patient_id.id,
+            'default_doctor_id' : self.doctor_id.id,
+            'default_nurse_id' : self.nurse_id.id,
+            'default_midwife_id' : self.midwife_id.id,
+            'default_service_id' : self.service_id.id,
+            'default_service_line_id' : self.service_line_id.id,
+            'default_diagnosis_id' : self.diagnosis_id.id
+        }
+                             
+        return action
+
         
 
         

@@ -11,7 +11,7 @@
                  <xpath expr="//notebook" position="inside">
                     <page name="observation" string="Hospital Observation">
                         <!-- <group name="observation" string="Hospital Observation"> -->
-                            <field name="observasion_services_ids" readonly="1">
+                            <field name="observasion_services_ids">
                                 <list>
                                     <field name="name"/>
                                     <field name="service_id"/>

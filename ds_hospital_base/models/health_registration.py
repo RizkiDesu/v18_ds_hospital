@@ -9,7 +9,11 @@ class DsHealthRegistration(models.Model):
 
     name                = fields.Char(string='Name')
     diagnosis_id        = fields.Many2one(comodel_name='ds.icd10', string='Diagnosis')
-
+    
+    date_time_create    = fields.Datetime(string='Date Time Create', default=fields.Datetime.now)
+    REQ_TYPE            = []
+    req_type            = fields.Selection(string='Registration Type', selection=REQ_TYPE)
+    
     patient_id          = fields.Many2one(comodel_name='ds.patient', string='Patient')
     mr_number           = fields.Char(related='patient_id.mr_number', string='MR Number', store=True)
 
@@ -55,8 +59,7 @@ class DsHealthRegistration(models.Model):
     
     responsible_patient = fields.Many2one('res.partner', string='Responsible Patient', domain=[('company_type', '=', 'person')])
 
-    REQ_TYPE            = []
-    req_type            = fields.Selection(string='Registration Type', selection=REQ_TYPE)
+    
 
     
 

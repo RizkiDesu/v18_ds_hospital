@@ -16,6 +16,8 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base',
+        'stock',
+        'account',
         'ds_hospital_base',
     ],
 
@@ -24,7 +26,11 @@
         # 'security/res_groups.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence.xml',
+        'data/data.xml',
+        'views/inherit_res_config_settings.xml',
         'views/observation_service.xml',
+        'views/nursing_assessment.xml',
+
 
     ],
     # only loaded in demonstration mode
