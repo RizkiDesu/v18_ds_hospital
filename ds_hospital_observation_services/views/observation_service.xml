@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="ds_patient_inherit_view_form" model="ir.ui.view">
+            <field name="name">ds.patient.inherit.view.form</field>
+            <field name="model">ds.patient</field>
+            <field name="inherit_id" ref="ds_hospital_base.ds_patient_view_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//notebook" position="inside">
+                    <page name="observation" string="Hospital Observation">
+                        <!-- <group name="observation" string="Hospital Observation"> -->
+                            <field name="observasion_services_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="service_id"/>
+                                    <field name="doctor_id"/>
+                                    <field name="weight"/>
+                                    <field name="height"/>
+                                    <field name="temp"/>
+                                    <field name="hr"/>
+                                    <field name="rr"/>
+                                    <field name="systolic_bp"/>
+                                    <field name="diastolic_bp"/>
+                                    <field name="spo2"/>
+                                </list>
+                            </field>
+                        <!-- </group> -->
+                    </page>
+                </xpath>
+                
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

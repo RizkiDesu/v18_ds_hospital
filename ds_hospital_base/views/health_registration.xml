@@ -13,7 +13,7 @@
                     <field name="name"/>
                     <field name="patient_id"/>
                     <field name="mr_number"/>
-                    <field name="health_workers_id"/>
+                    <field name="req_type"/>
                     <field name="service_id"/>
                     <field name="diagnosis_id"/>
                 </list>
