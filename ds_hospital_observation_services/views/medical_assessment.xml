@@ -3,26 +3,23 @@
 
     <data>
     
-
-        <record id="ds_nursing_assessment_view_tree" model="ir.ui.view">
-            <field name="name">ds.nursing.assessment.view.tree</field>
-            <field name="model">ds.nursing.assessment</field>
+        <record id="ds_medical_assessment_view_tree" model="ir.ui.view">
+            <field name="name">ds.medical.assessment.view.tree</field>
+            <field name="model">ds.medical.assessment</field>
             <field name="arch" type="xml">
                 <list>
-                    <!-- Add your fields here -->
                     <field name="name"/>
                     <field name="date_time_create"/>
                     <field name="registration_id"/>
                     <field name="service_id"/>
                     <field name="doctor_id"/>
-                    
                 </list>
             </field>
         </record>
 
-        <record id="ds_nursing_assessment_view_form" model="ir.ui.view">
-            <field name="name">ds.nursing.assessment.view.form</field>
-            <field name="model">ds.nursing.assessment</field>
+        <record id="ds_medical_assessment_view_form" model="ir.ui.view">
+            <field name="name">ds.medical.assessment.view.form</field>
+            <field name="model">ds.medical.assessment</field>
             <field name="arch" type="xml">
                 <form string="">
                     <header>
@@ -67,8 +64,8 @@
                         
                         
                         <notebook>
-                            <page name="base_information" string="Nursing Assessment Base Information">
-                                <group name="nursing_assessment" string="Nursing Assessment Base Information">
+                            <page name="base_information" string="Medical Assessment Base Information">
+                                <group name="medical_assessment" string="Medical Assessment Base Information">
                                     <group>
                                         <field name="weight" readonly="state not in ('draft')"/>
                                         <field name="height" readonly="state not in ('draft')"/>
@@ -109,10 +106,10 @@
             </field>
         </record>
         
-        <record id="ds_nursing_assessment_action" model="ir.actions.act_window">
-            <field name="name">Nursing Asessment</field>
+        <record id="ds_medical_assessment_action" model="ir.actions.act_window">
+            <field name="name">Medical Asessment</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">ds.nursing.assessment</field>
+            <field name="res_model">ds.medical.assessment</field>
             <field name="view_mode">list,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">

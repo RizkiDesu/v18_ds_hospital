@@ -27,9 +27,13 @@
         'security/ir.model.access.csv',
         'data/ir_sequence.xml',
         'data/data.xml',
+        'views/menu.xml',
         'views/inherit_res_config_settings.xml',
         'views/observation_service.xml',
         'views/nursing_assessment.xml',
+        'views/medical_assessment.xml',
+        'views/medical_treatment.xml',
+        'views/inspection.xml',
 
 
     ],

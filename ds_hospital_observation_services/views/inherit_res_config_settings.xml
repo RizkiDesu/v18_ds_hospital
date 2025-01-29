@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="ds_hospital_base.res_config_settings_ds_hospital_view_form"/>
             <field name="arch" type="xml">
             
-                <xpath expr="//div[@id='hospital_base']" position="after">
+                <xpath expr="//app[@id='ds_hospital_base']" position="inside">
 
                         <h2>Hospital Observation</h2>
                         <div id="ds_hospital_outpatient_services" class="row mt16 o_settings_container">
@@ -28,6 +28,15 @@
                                     <span class="o_form_label">Medical Assessment</span>
                                     <div class="text-muted">
                                         <field name="medical_assessment_product"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"></div>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Inspection</span>
+                                    <div class="text-muted">
+                                        <field name="inspection_product"/>
                                     </div>
                                 </div>
                             </div>

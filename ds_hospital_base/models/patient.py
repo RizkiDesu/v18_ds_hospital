@@ -1,13 +1,14 @@
 from odoo import models, fields, api
 
 class Patient(models.Model):
-    _name           = 'ds.patient'
-    _description    = 'Patient'
+    _name                           = 'ds.patient'
+    _description                    = 'Patient'
 
     # INHERITS RES PARTNER
-    _inherits       = {'res.partner': 'partner_id'}
-    partner_id      = fields.Many2one('res.partner', string='Patient', required=True, ondelete='cascade')
-
+    _inherits                       = {'res.partner': 'partner_id'}
+    partner_id                      = fields.Many2one('res.partner', string='Patient', required=True, ondelete='cascade')
+    def action_view_partner_invoices(self):
+        return self.partner_id.action_view_partner_invoices()
     @api.model
     def create(self, vals):
         res = super(Patient, self).create(vals)

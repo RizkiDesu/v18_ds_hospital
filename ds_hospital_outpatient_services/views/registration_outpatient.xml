@@ -3,8 +3,6 @@
 
     <data>
     
-        
-
         <record id="ds_registration_outpatient_view_tree" model="ir.ui.view">
             <field name="name">ds.registration.outpatient.view.tree</field>
             <field name="model">ds.registration.outpatient</field>
@@ -36,17 +34,28 @@
                         <div class="oe_button_box" name="button_box">
                             <button name="action_nursing_assessment" type="object" class="oe_stat_button" icon="fa-medkit" >
                                 <!-- <field name="keperawatan_count" string="Keperawatan" widget="statinfo"/> -->
-                                Nursing Asessment
+                                Asessment
+                            </button>
+                            <button name="action_medical_assessment" type="object" class="oe_stat_button" icon="fa-user-md" >
+                                <!-- <field name="keperawatan_count" string="Keperawatan" widget="statinfo"/> -->
+                                Medical
+                            </button>
+                            <button name="action_inspection" type="object" class="oe_stat_button" icon="fa-stethoscope" >
+                                <!-- <field name="keperawatan_count" string="Keperawatan" widget="statinfo"/> -->
+                                Inspection
+                            </button>
+                            <button name="action_medical_treatment" type="object" class="oe_stat_button" icon="fa-medkit" >
+                                <!-- <field name="keperawatan_count" string="Keperawatan" widget="statinfo"/> -->
+                                Treatment
                             </button>
                         </div>
                        <div class="oe_title">
                             <h3><label for="name"/></h3>
                             <h1><field name="name" readonly="1"/></h1>
-                            <!-- <field name="service_id" readonly="service_id != False"/> -->
                             <h4><label for="mr_number"/></h4>
-                            <h2><field name="mr_number"/></h2>
-                            <label for="date_time_create"/>
-                            <field name="date_time_create"/>
+                            <h2><field name="mr_number" readonly="state not in ('draft')"/></h2>
+                            <label for="date_time_create"/> :
+                            <field name="date_time_create" readonly="state not in ('draft')"/>
                         </div>
 
                         <group name="insurance" string="Insurance Data">
