@@ -1,11 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <data>
-    
+        <record id="ds_product_form_view" model="ir.ui.view">
+            <field name="name">ds.product.form.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <field name="sale_ok" position="before">
+                    <span class="d-inline-block">
+                        <field name="ds_is_bundle" />
+                        <label for="ds_is_bundle" string="Is Bundled ?" />
+                    </span>
+                </field>
+                <xpath expr="//div[@name='list_price_uom']" position="after">\
+                    <label for="compute_bundle_price">
+
+                    </label>
+                    <div class="w-100">
+                        <button name="compute_bundle_price" string="Compute Bundle Sales Price" type="object" class="btn-primary" invisible="ds_is_bundle == False" />
+                    </div>
+                </xpath>
+
+                <xpath expr="//div[@name='standard_price_uom']" position="after">
+                    <label for="compute_bundle_cost_price">
+
+                    </label>
+                    <div class="w-100">
+                        <button name="compute_bundle_cost_price" string="Compute Bundle Cost Price" type="object" class="btn-primary" invisible="ds_is_bundle == False"/>
+                    </div>
+                </xpath>
+                <xpath expr="//notebook//page[last()]" position="after">
+                    <page string="Pack/Bundle Products" invisible="ds_is_bundle == False">
+                        <field name="ds_bundle_product_ids">
+                            <form string="Product Bundles">
+                                <group>
+                                    <group>
+                                        <field name="ds_bundle_id" column_invisible='True'/>
+                                        <field name="ds_product_id" domain="[('product_tmpl_id', '!=', parent.id)]"/>
+                                        <field name="ds_qty" />
+                                        <field name="ds_uom" />
+                                        <field name="ds_cost_price"/>
+                                        <field name="ds_price_unit" />
+                                        <field name="ds_price_subtotal" force_save="1" />
+                                    </group>
+                                </group>
+                            </form>
+                            <list editable="bottom">
+                                <field name="ds_bundle_id" column_invisible='True'/>
+                                <field name="ds_product_id" domain="[('product_tmpl_id', '!=', parent.id)]"/>
+                                <field name="ds_qty" />
+                                <field name="ds_uom" />
+                                <field name="ds_cost_price"/>
+                                <field name="ds_price_unit" />
+                                <field name="ds_price_subtotal" force_save="1" />
+                            </list>
+                        </field>
+                        <group name="note_group" col="6">
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="pack_total">
+                                <field name="ds_amount_total" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                            </group>
+                            <div class="oe_clear" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
         
     
     </data>
+    
+    <data>
+    
+        <record id="product_template_treatment_action" model="ir.actions.act_window">
+            <field name="name">Medical Treatment Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[(('hospital_product_type', '=', 'treatment'))]</field>
+            <field name="context">{'default_hospital_product_type': 'treatment'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+        <record id="product_template_drug_action" model="ir.actions.act_window">
+            <field name="name">Medical Drug Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[(('hospital_product_type', '=', 'drug'))]</field>
+            <field name="context">{'default_hospital_product_type': 'drug'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="ds_medical_treatment_menu_categ" name="Medical Treatment" parent="ds_product_menu_categ" sequence="10"/>
+        <menuitem id="ds_medical_treatment_menu_act" name="Medical Treatment" parent="ds_medical_treatment_menu_categ" action="product_template_treatment_action" sequence="10"/>
+        <menuitem id="ds_medical_drug_menu_act" name="Medical Drug" parent="ds_medical_treatment_menu_categ" action="product_template_drug_action" sequence="15"/>
+
+    </data>
+
+    <data>
+    
+        <!-- ds.medical.treatment tree view -->
+        <record id="ds_medical_treatment_view_tree" model="ir.ui.view">
+            <field name="name">ds.medical.treatment.view.tree</field>
+            <field name="model">ds.medical.treatment</field>
+            <field name="arch" type="xml">
+                <list>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="date_time_create"/>
+                    <field name="registration_id"/>
+                    <field name="service_id"/>
+                    <field name="doctor_id"/>
+                    
+                </list>
+            </field>
+        </record>
+
+        <record id="ds_medical_treatment_view_form" model="ir.ui.view">
+            <field name="name">ds.medical.treatment.view.form</field>
+            <field name="model">ds.medical.treatment</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button string="Confirm" invisible="state not in ('draft')" name="action_confirm" type="object" class="oe_highlight"/>
+                        <button string="Done" invisible="state not in ('confirm')" name="action_done" type="object" class="oe_highlight"/>
+                        <!-- <button string="Cancel" invisible="state not in ('confirm')" name="action_cancel" type="object" class="oe_highlight"/> -->
+                        <!-- <button string="Tes" name="tesss" type="object" class="oe_highlight"/> -->
+                        <button string="Draft" invisible="state not in ('done')" name="action_draft" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="confirm,done" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h3><label for="name"/></h3>
+                            <h1><field name="name" readonly="1"/></h1>
+                            <label for="date_time_create"/>
+                            <field name="date_time_create"/>
+                        </div>
+                        <group name="regisitration" string="Registration">
+
+                            <field name="registration_id" readonly="state not in ('draft')"/>
+                            <field name="req_type" readonly="state not in ('draft')"/>
+
+                        </group>
+
+                        <group name="patient" string="Patient Information">
+                            <field name="patient_id" readonly="state not in ('draft')"/>
+                            <field name="mr_number"/>
+                        </group>
+
+                        <group name="health_workers" string="Health Workers">
+                            <field name="service_line_id" readonly="state not in ('draft')"/>
+                            <field name="specialist_id" invisible="1"/>
+                            <field name="doctor_id" readonly="state not in ('draft')" domain="[('is_health_workers','=',True),('specialist_ids','in',specialist_id),('hospital_partner_type','=','doctor')]"/>
+                            <field name="nurse_id" readonly="state not in ('draft')" domain="[('is_health_workers','=',True),('hospital_partner_type','=','nurse')]"/>
+                            <field name="is_midwifery" invisible="1"/>
+                            <field name="midwife_id" readonly="state not in ('draft')" domain="[('is_health_workers','=',True),('hospital_partner_type','=','midwife')]" invisible="is_midwifery == False"/>
+                            <field name="health_workers_ids" widget="many2many_tags" invisible="1"/>
+                            <field name="partner_ids" widget="many2many_tags" invisible="1"/>
+                        </group>
+
+                        <notebook>
+                            <page name="treatment" string="Treatment">
+                                <field name="treatment_ids">
+                                    <list editable="bottom">  
+                                        <field name="product_id"/>
+                                        <field name="qty"/>
+                                        <field name="price"/>
+                                        <field name="total"/>
+                                        <field name="description"/>
+                                    </list>
+                                </field>
+                                
+                            </page>
+                            <page name="other" string="Other">
+                                <group name="other" string="Other">
+                                    <field name="invoice_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ds_medical_treatment_action" model="ir.actions.act_window">
+            <field name="name">Medical Treatment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ds.medical.treatment</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+    
+    </data>
+    
     
 
 </odoo>

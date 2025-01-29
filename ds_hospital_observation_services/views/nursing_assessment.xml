@@ -95,11 +95,11 @@
                             </page>
                             <page name="complaint" string="Chief Complaint">
                                 <group>
-                                    <field name="diagnosis_id"/>
-                                    <field name="chief_complaint"/>
-                                    <field name="family_history_of_illness"/>
-                                    <field name="history_of_previous_illness"/>
-                                    <field name="history_of_allergies"/>
+                                    <field name="diagnosis_id" readonly="state not in ('draft')"/>
+                                    <field name="chief_complaint" readonly="state not in ('draft')"/>
+                                    <field name="family_history_of_illness" readonly="state not in ('draft')"/>
+                                    <field name="history_of_previous_illness" readonly="state not in ('draft')"/>
+                                    <field name="history_of_allergies" readonly="state not in ('draft')"/>
                                 </group>
                             </page>
                         </notebook>

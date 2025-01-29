@@ -14,6 +14,27 @@
         </record>
 
 
+        <record id="sequence_obs_inspection" model="ir.sequence">
+            <field name="name">Inspection Patient</field>
+            <field name="code">ds.inspection</field>
+            <field name="prefix">INS%(y)s%(month)s.</field>
+            <field name="padding">5</field>
+            <field name="number_next_actual">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">standard</field>
+        </record>
+
+        <record id="sequence_obs_treatment" model="ir.sequence">
+            <field name="name">Treatment Patient</field>
+            <field name="code">ds.treatment</field>
+            <field name="prefix">TR%(y)s%(month)s.</field>
+            <field name="padding">5</field>
+            <field name="number_next_actual">1</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">standard</field>
+        </record>
+
+
         
     
     </data>

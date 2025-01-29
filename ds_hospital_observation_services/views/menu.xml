@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <menuitem id="ds_product_menu_categ" name="Hospital Product" parent="ds_hospital_base.ds_hospital_base_menu_root" sequence="100"/>
+    
+    </data>
+    
+
+</odoo>

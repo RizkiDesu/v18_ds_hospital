@@ -18,6 +18,14 @@
             <field name="list_price">15000</field>
             <field name="standard_price">15000</field>
         </record>
+
+        <record id="ds_product_inspection" model="product.product">
+            <field name="name">Inspection</field>
+            <field name="type">service</field>
+            <field name="hospital_product_type">consultation</field>
+            <field name="list_price">15000</field>
+            <field name="standard_price">15000</field>
+        </record>
     
     </data>
     

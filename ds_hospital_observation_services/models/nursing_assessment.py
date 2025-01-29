@@ -11,17 +11,8 @@ class DsAsessment(models.Model):
     _inherits       = {'ds.observation.services': 'observation_id'}
     observation_id  = fields.Many2one('ds.observation.services', string='Registration', required=True, ondelete='cascade')
 
-
-    
-
-
-    
-
-
-
     def action_confirm(self):
         if not self.product_id :
-            # product_id = id(self.env['ir.config_parameter'].sudo().get_param('ds_hospital_observation_services.nursing_assessment_product'))
             self.product_id = int(self.env['ir.config_parameter'].sudo().get_param('ds_hospital_observation_services.nursing_assessment_product'))     
         self.state = 'confirm'
 
@@ -66,4 +57,20 @@ class DsAsessment(models.Model):
                 self.spo2           = 0
                 self.gcs_score      = 0
                 self.consciousness  = 'alert'
-        # return rec
+
+    @api.onchange('doctor_id', 'nurse_id', 'midwife_id')
+    def _onchange_doctor_id(self):
+        self.health_workers_ids = False
+        health_workers_ids      = []
+        partner_ids             = []
+        if self.doctor_id:
+            health_workers_ids.append((4, self.doctor_id.id))
+            partner_ids.append((4, self.doctor_id.work_contact_id.id))
+        if self.nurse_id:
+            health_workers_ids.append((4, self.nurse_id.id))
+            partner_ids.append((4, self.nurse_id.work_contact_id.id))
+        if self.midwife_id:
+            health_workers_ids.append((4, self.midwife_id.id))
+            partner_ids.append((4, self.midwife_id.work_contact_id.id))
+        self.health_workers_ids = health_workers_ids
+        self.partner_ids        = partner_ids

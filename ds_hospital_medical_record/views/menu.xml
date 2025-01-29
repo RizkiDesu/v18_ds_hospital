@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <menuitem id="ds_medical_record_menu_root" name="Medical Record" sequence="10" web_icon="ds_hospital_medical_record,static/description/icon.png"/>
+
+        <menuitem id="ds_observation_services_menu_categ" name="Observation Services" parent="ds_medical_record_menu_root" sequence="15"/>
+
+
+        <menuitem id="ds_observation_nursing_assessment_menu_act" name="Nursing Assessment" parent="ds_observation_services_menu_categ" action="ds_hospital_observation_services.ds_nursing_assessment_action" sequence="0"/>
+        <menuitem id="ds_observation_medical_assessment_menu_act" name="Medical Assessment" parent="ds_observation_services_menu_categ" action="ds_hospital_observation_services.ds_medical_assessment_action" sequence="5"/>
+
+        <menuitem id="ds_observation_inspection_menu_categ" name="Inspection" parent="ds_observation_services_menu_categ" action="ds_hospital_observation_services.ds_inspection_action" sequence="10"/>
+        <menuitem id="ds_observation_medical_treatment_menu_act" name="Medical Treatment" parent="ds_observation_services_menu_categ" action="ds_hospital_observation_services.ds_medical_treatment_action" sequence="15"/>
+    
+    </data>
+    
+
+</odoo>

@@ -2,8 +2,20 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
 
-# READONLY_STATES = {'draft': [('readonly', False)], 'confirm': [('readonly', True)],'process': [('readonly', True)], 'cancel': [('readonly', True)], 'done': [('readonly', True)]}
 
+class DsMedicalTreatmentOutpatient(models.Model):
+    _inherit = 'ds.medical.treatment'
+    REQ_TYPE = [
+        ('outpatient', 'Outpatient'),
+        ]
+    req_type = fields.Selection(string='Registration Type', selection_add=REQ_TYPE)
+
+class DsInspectionOutpatient(models.Model):
+    _inherit = 'ds.inspection'
+    REQ_TYPE = [
+        ('outpatient', 'Outpatient'),
+        ]
+    req_type = fields.Selection(string='Registration Type', selection_add=REQ_TYPE)
 
 class DsObservationServicesOutpatient(models.Model):
     _inherit = 'ds.observation.services'
@@ -12,7 +24,6 @@ class DsObservationServicesOutpatient(models.Model):
         ('outpatient', 'Outpatient'),
         ]
     req_type = fields.Selection(string='Registration Type', selection_add=REQ_TYPE)
-
 
 class DsHealthRegistrationOutpatient(models.Model):
     _inherit = 'ds.health.registration'
@@ -81,8 +92,8 @@ class DsRegistrationOutpatient(models.Model):
         if self.product_service_id:
             product_ids.append({
                 'product_id'    : self.product_service_id.id,
-                'quantity'      : 1,
-                'price_unit'    : self.product_service_id.list_price
+                'qty'      : 1,
+                'price'    : self.product_service_id.list_price
                 
             })
         if not self.invoice_id:
@@ -120,13 +131,42 @@ class DsRegistrationOutpatient(models.Model):
             'default_midwife_id' : self.midwife_id.id,
             'default_service_id' : self.service_id.id,
             'default_service_line_id' : self.service_line_id.id,
-            'default_diagnosis_id' : self.diagnosis_id.id
         }     
         return action
     
 
     def action_medical_assessment(self):
         action = self.env["ir.actions.actions"]._for_xml_id("ds_hospital_observation_services.ds_medical_assessment_action")
+        action['domain'] = [('registration_id', '=', self.registration_id.id), ('req_type', '=', self.req_type)]
+        action['context'] = {
+            'default_registration_id': self.registration_id.id, 
+            'default_req_type' : self.req_type, 
+            'default_patient_id' : self.patient_id.id,
+            'default_doctor_id' : self.doctor_id.id,
+            'default_nurse_id' : self.nurse_id.id,
+            'default_midwife_id' : self.midwife_id.id,
+            'default_service_id' : self.service_id.id,
+            'default_service_line_id' : self.service_line_id.id,
+        }
+                             
+        return action
+    def action_inspection(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("ds_hospital_observation_services.ds_inspection_action")
+        action['domain'] = [('registration_id', '=', self.registration_id.id), ('req_type', '=', self.req_type)]
+        action['context'] = {
+            'default_registration_id': self.registration_id.id, 
+            'default_req_type' : self.req_type, 
+            'default_patient_id' : self.patient_id.id,
+            'default_doctor_id' : self.doctor_id.id,
+            'default_nurse_id' : self.nurse_id.id,
+            'default_midwife_id' : self.midwife_id.id,
+            'default_service_id' : self.service_id.id,
+            'default_service_line_id' : self.service_line_id.id,
+        }
+                             
+        return action
+    def action_medical_treatment(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("ds_hospital_observation_services.ds_medical_treatment_action")
         action['domain'] = [('registration_id', '=', self.registration_id.id), ('req_type', '=', self.req_type)]
         action['context'] = {
             'default_registration_id': self.registration_id.id, 

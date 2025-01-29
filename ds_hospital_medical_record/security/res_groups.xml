@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <data noupdate="1">
     
-        <record id="group_hospital_access_outpatient_services" model="res.groups">
-            <field name="name">Hospital Acesss Outpatient Services</field>
+        <record id="group_hospital_access_medical_record" model="res.groups">
+            <field name="name">Hospital Acesss Medical Record</field>
             <field name="category_id" ref="ds_hospital_base.module_category_hospital_unit"/>
             <field name="users" eval="[(4, ref('base.user_admin')),	(4,ref('base.user_root'))]"/>
         </record>
     
     </data>
     
+
 </odoo>
