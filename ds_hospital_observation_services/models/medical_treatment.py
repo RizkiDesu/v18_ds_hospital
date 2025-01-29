@@ -132,7 +132,7 @@ class DsMedicalTreatment(models.Model):
     midwife_id          = fields.Many2one(comodel_name='hr.employee', string='Midwife')
     health_workers_ids  = fields.Many2many(comodel_name='hr.employee', string='Health Workers')
     partner_ids         = fields.Many2many(comodel_name='res.partner', string='Partners')
-    
+    # stock_move_id       = fields.Many2one(comodel_name='stock.move', string='Stock Move')
     def action_confirm(self):
 
         if len(self.treatment_ids) > 0 and self.treatment_ids:
@@ -152,8 +152,12 @@ class DsMedicalTreatment(models.Model):
                     'registration_id'   : self.registration_id.id
                 })
                 self.invoice_id = invoice_id
-                self.ds_stock_reduction_list(self.treatment_ids)
-
+                # self.ds_stock_reduction_list(self.treatment_ids)
+                for line in self.treatment_ids:
+                    consu = self.ds_stock_reduction({
+                        'product_id'    : line.product_id,
+                        'qty'           : line.qty
+                    })
 
         self.state = 'confirm'
 
@@ -173,7 +177,7 @@ class DsMedicalTreatmentLine(models.Model):
     _description    = 'Medical Treatment Line'
 
     treatment_id    = fields.Many2one(comodel_name='ds.medical.treatment', ondelete='cascade', string='Treatment', required=True, index=True)
-    product_id      = fields.Many2one(comodel_name='product.product', ondelete='restrict', string='Item Treatment', required=True, domain=[('hospital_product_type', '=', 'treatment')])
+    product_id      = fields.Many2one(comodel_name='product.product', ondelete='restrict', string='Item Treatment', required=True)
     qty             = fields.Float(string='Jumlah', required=True)
     price           = fields.Float(string='Price', required=True)
     total           = fields.Float(string='Total', compute='_compute_total', store=True)

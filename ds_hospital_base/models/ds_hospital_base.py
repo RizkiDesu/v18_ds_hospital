@@ -9,9 +9,7 @@ from io import BytesIO
 class DsHospitalLibrary(models.AbstractModel):
     _name           = "ds.hospital.library"
     _description    = "Hospital Library"
-            
 
-    
     def ds_create_invoice(self, invoice_data):
         """Method for creating invoice"""
         invoice_vals = {
@@ -46,61 +44,59 @@ class DsHospitalLibrary(models.AbstractModel):
             raise UserError(_('Please set the Material Usage Location in the Hospital Configuration menu'))
         if not source_location_id:
             raise UserError(_('Please set the Stock Material Location in the Hospital Configuration menu'))
+        
         product             = product_data['product_id']
-        # --------------------------- START FOR BUNDLE PRODUCT ---------------------------
-        # move = False
+        stock_move_model = self.env['stock.move']
+        if product == 'consu':
+            # --------------------------- FOR SINGLE PRODUCT ---------------------------
+            data = {
+                'name': product.name,
+                'product_id': product.id,
+                'product_uom': product.uom_id.id,
+                'product_uom_qty': product_data.get('qty', 1.0),
+                'date': product_data.get('date', fields.Datetime.now()),
+                'location_id': source_location_id,
+                'location_dest_id': dest_location_id,
+                'state': 'draft',
+                'origin': self.name,
+            }
+            move = stock_move_model.create(data)
+            move._action_confirm()
+            move._action_assign()
+            if product_data.get('lot_id'):
+                lot_id = product_data['lot_id']
+                lot_qty = product_data.get('qty', 1.0)
+                self.sudo().assign_given_lots(move, lot_id, lot_qty)
+            if move.state == 'assigned':
+                move._action_done()
+                # move.state = 'done'
+            
+            return move
+        
+        # --------------------------- FOR MULTI PRODUCTS ---------------------------
         if product.ds_is_bundle:
             for bundle_item in product.ds_bundle_product_ids:
-                if product.is_storable:
+                if bundle_item.ds_product_id.type == 'consu':
                     data = {
-                        'name'              : bundle_item.ds_product_id.name,
-                        'product_id'        : bundle_item.ds_product_id.id,
-                        'product_uom'       : bundle_item.ds_uom.id,
-                        'product_uom_qty'   : bundle_item.ds_qty or 1.0,
-                        'date'              : product_data.get('date', fields.datetime.now()),
-                        'location_id'       : source_location_id,
-                        'location_dest_id'  : dest_location_id,
-                        'state'             : 'draft',
-                        'origin'            : self.name,
-                        'quantity_done'     : bundle_item.ds_qty or 1.0,
+                        'name': bundle_item.ds_product_id.name,
+                        'product_id': bundle_item.ds_product_id.id,
+                        'product_uom': bundle_item.ds_uom.id,
+                        'product_uom_qty': bundle_item.ds_qty or 1.0,
+                        'date': product_data.get('date', fields.Datetime.now()),
+                        'location_id': source_location_id,
+                        'location_dest_id': dest_location_id,
+                        'state': 'draft',
+                        'origin': self.name,
+                        # 'quantity_done': bundle_item.ds_qty or 1.0,
                     }
-                    move = self.env['stock.move'].create(data)
+                    move = stock_move_model.create(data)
                     move._action_confirm()
                     move._action_assign()
                     if product_data.get('lot_id'):
-                        lot_id  = product_data['lot_id']
+                        lot_id = product_data['lot_id']
                         lot_qty = bundle_item.ds_qty or 1.0
                         self.assign_given_lots(move, lot_id, lot_qty)
                     if move.state == 'assigned':
                         move._action_done()
-        # --------------------------- END FOR BUNDLE PRODUCT ---------------------------
+                        # move.state = 'done'
 
-        # --------------------------- START FOR SINGLE PRODUCT ---------------------------
-        if product.is_storable:
-            move = self.env['stock.move'].create({
-                'name'              : product.name,
-                'product_id'        : product.id,
-                'product_uom'       : product.uom_id.id,
-                'product_uom_qty'   : product_data.get('qty',1.0),
-                'date'              : product_data.get('date',fields.datetime.now()),
-                'location_id'       : source_location_id,
-                'location_dest_id'  : dest_location_id,
-                'state'             : 'draft',
-                'origin'            : self.name,
-                'quantity_done'     : product_data.get('qty',1.0),
-            })
-            move._action_confirm()
-            move._action_assign()
-            if product_data.get('lot_id', False):
-                lot_id  = product_data.get('lot_id')
-                lot_qty = product_data.get('qty',1.0)
-                self.sudo().assign_given_lots(move, lot_id, lot_qty)
-            if move.state == 'assigned':
-                move._action_done()
-            # --------------------------- END FOR SINGLE PRODUCT ---------------------------
-            return move
-    
-
-    def ds_stock_reduction_list(self, product_ids):
-        for product in product_ids:
-            self.ds_stock_reduction(product)

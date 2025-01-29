@@ -188,6 +188,7 @@
                             </page>
                             <page name="other" string="Other">
                                 <group name="other" string="Other">
+                                <!-- <field name="stock_move_id"/> -->
                                     <field name="invoice_id"/>
                                 </group>
                             </page>
